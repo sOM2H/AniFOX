@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190822142058) do
+ActiveRecord::Schema.define(version: 20191115161447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,4 +27,33 @@ ActiveRecord::Schema.define(version: 20190822142058) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "animes", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "episodes", force: :cascade do |t|
+    t.integer "number"
+    t.string "link"
+    t.bigint "anime_id"
+    t.bigint "season_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["anime_id"], name: "index_episodes_on_anime_id"
+    t.index ["season_id"], name: "index_episodes_on_season_id"
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.integer "name"
+    t.bigint "anime_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["anime_id"], name: "index_seasons_on_anime_id"
+  end
+
+  add_foreign_key "episodes", "animes"
+  add_foreign_key "episodes", "seasons"
+  add_foreign_key "seasons", "animes"
 end
