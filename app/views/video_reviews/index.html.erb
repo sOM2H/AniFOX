@@ -1,0 +1,19 @@
+<h1>Видеообзоры</h1>
+</br>
+<% @video_reviews.each do |video_review|%>
+<div class="row headline">
+        <div class="span8">
+          <iframe allowfullscreen="allowfullscreen" width="770" height="435"
+           src="<%= video_review.youtube_link%>">
+          </iframe>
+        </div>        
+        <div class="span4">
+        	<h3><%= video_review.title%></h3>
+            </br>
+            </br>
+            </br>
+            </br>
+            <p><%= video_review.description%></p>
+        </div>
+</div>
+<%end%>
