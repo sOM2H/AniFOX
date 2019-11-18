@@ -37,23 +37,21 @@ ActiveRecord::Schema.define(version: 20191115161447) do
   create_table "episodes", force: :cascade do |t|
     t.integer "number"
     t.string "link"
-    t.bigint "anime_id"
     t.bigint "season_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["anime_id"], name: "index_episodes_on_anime_id"
     t.index ["season_id"], name: "index_episodes_on_season_id"
   end
 
   create_table "seasons", force: :cascade do |t|
-    t.integer "name"
+    t.integer "number"
+    t.string "name"
     t.bigint "anime_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["anime_id"], name: "index_seasons_on_anime_id"
   end
 
-  add_foreign_key "episodes", "animes"
   add_foreign_key "episodes", "seasons"
   add_foreign_key "seasons", "animes"
 end

@@ -1,5 +1,5 @@
 ActiveAdmin.register Episode do
-  permit_params :anime_id, :number, :link, :season_id
+  permit_params :number, :link, :season_id
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -8,8 +8,7 @@ ActiveAdmin.register Episode do
   # or
   form do |f|
     f.inputs do
-      f.input :anime_id, :label => 'Anime', :as => :select, :collection => Anime.all
-      f.input :season_id, :label => 'Season', :as => :select, :collection => Season.all.each
+      f.input :season, label: 'Season', as: :select, collection: Season.all
       f.input :number
       f.input :link
       f.actions
